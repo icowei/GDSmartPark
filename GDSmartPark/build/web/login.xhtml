@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+        <p:panel header="Enter your information">
+            <h:panelGrid columns="2">
+                <h:outputText value="Username: " />
+                <p:inputText value="#{loginBean.username}" />
+                
+                <h:outputText value="Password: " />
+                <p:password value="#{loginBean.password}" feedback="false"/>
+            </h:panelGrid>
+            
+            <p:button outcome="index" value="Login" />
+        </p:panel>
+        <script type="text/javascript">  
+    function fadein(input, container) {  
+        container.fadeIn("slow");  
+    }  
+  
+    function fadeout(input, container) {  
+        container.fadeOut("slow");  
+    }  
+</script>
+    </h:body>
+</html>
+

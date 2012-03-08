@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateBerthTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateBerthLabel_berthId}" for="berthId" />
+                    <h:inputText id="berthId" value="#{berthController.selected.berthId}" title="#{bundle.CreateBerthTitle_berthId}" required="true" requiredMessage="#{bundle.CreateBerthRequiredMessage_berthId}"/>
+                    <h:outputLabel value="#{bundle.CreateBerthLabel_resFlag}" for="resFlag" />
+                    <h:inputText id="resFlag" value="#{berthController.selected.resFlag}" title="#{bundle.CreateBerthTitle_resFlag}" required="true" requiredMessage="#{bundle.CreateBerthRequiredMessage_resFlag}"/>
+                    <h:outputLabel value="#{bundle.CreateBerthLabel_parkFlag}" for="parkFlag" />
+                    <h:inputText id="parkFlag" value="#{berthController.selected.parkFlag}" title="#{bundle.CreateBerthTitle_parkFlag}" required="true" requiredMessage="#{bundle.CreateBerthRequiredMessage_parkFlag}"/>
+                    <h:outputLabel value="#{bundle.CreateBerthLabel_plId}" for="plId" />
+                    <h:selectOneMenu id="plId" value="#{berthController.selected.plId}" title="#{bundle.CreateBerthTitle_plId}" required="true" requiredMessage="#{bundle.CreateBerthRequiredMessage_plId}">
+                        <f:selectItems value="#{parkinglotController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{berthController.create}" value="#{bundle.CreateBerthSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{berthController.prepareList}" value="#{bundle.CreateBerthShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateBerthIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditParkinglotTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditParkinglotLabel_plId}" for="plId" />
+                    <h:inputText id="plId" value="#{parkinglotController.selected.plId}" title="#{bundle.EditParkinglotTitle_plId}" required="true" requiredMessage="#{bundle.EditParkinglotRequiredMessage_plId}"/>
+                    <h:outputLabel value="#{bundle.EditParkinglotLabel_plAddrCity}" for="plAddrCity" />
+                    <h:inputText id="plAddrCity" value="#{parkinglotController.selected.plAddrCity}" title="#{bundle.EditParkinglotTitle_plAddrCity}" required="true" requiredMessage="#{bundle.EditParkinglotRequiredMessage_plAddrCity}"/>
+                    <h:outputLabel value="#{bundle.EditParkinglotLabel_plAddrStreet}" for="plAddrStreet" />
+                    <h:inputText id="plAddrStreet" value="#{parkinglotController.selected.plAddrStreet}" title="#{bundle.EditParkinglotTitle_plAddrStreet}" required="true" requiredMessage="#{bundle.EditParkinglotRequiredMessage_plAddrStreet}"/>
+                    <h:outputLabel value="#{bundle.EditParkinglotLabel_plAddrArea}" for="plAddrArea" />
+                    <h:inputText id="plAddrArea" value="#{parkinglotController.selected.plAddrArea}" title="#{bundle.EditParkinglotTitle_plAddrArea}" />
+                    <h:outputLabel value="#{bundle.EditParkinglotLabel_plAddrNo}" for="plAddrNo" />
+                    <h:inputText id="plAddrNo" value="#{parkinglotController.selected.plAddrNo}" title="#{bundle.EditParkinglotTitle_plAddrNo}" required="true" requiredMessage="#{bundle.EditParkinglotRequiredMessage_plAddrNo}"/>
+                    <h:outputLabel value="#{bundle.EditParkinglotLabel_plBerthnum}" for="plBerthnum" />
+                    <h:inputText id="plBerthnum" value="#{parkinglotController.selected.plBerthnum}" title="#{bundle.EditParkinglotTitle_plBerthnum}" required="true" requiredMessage="#{bundle.EditParkinglotRequiredMessage_plBerthnum}"/>
+                    <h:outputLabel value="#{bundle.EditParkinglotLabel_plBerthrate}" for="plBerthrate" />
+                    <h:inputText id="plBerthrate" value="#{parkinglotController.selected.plBerthrate}" title="#{bundle.EditParkinglotTitle_plBerthrate}" required="true" requiredMessage="#{bundle.EditParkinglotRequiredMessage_plBerthrate}"/>
+                    <h:outputLabel value="#{bundle.EditParkinglotLabel_plLongitude}" for="plLongitude" />
+                    <h:inputText id="plLongitude" value="#{parkinglotController.selected.plLongitude}" title="#{bundle.EditParkinglotTitle_plLongitude}" required="true" requiredMessage="#{bundle.EditParkinglotRequiredMessage_plLongitude}"/>
+                    <h:outputLabel value="#{bundle.EditParkinglotLabel_plLatitude}" for="plLatitude" />
+                    <h:inputText id="plLatitude" value="#{parkinglotController.selected.plLatitude}" title="#{bundle.EditParkinglotTitle_plLatitude}" required="true" requiredMessage="#{bundle.EditParkinglotRequiredMessage_plLatitude}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{parkinglotController.update}" value="#{bundle.EditParkinglotSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditParkinglotViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{parkinglotController.prepareList}" value="#{bundle.EditParkinglotShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditParkinglotIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces - ShowCase</title>
+            </f:facet>
+
+            <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
+
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+        </h:head>
+
+
+        <h:body>
+            
+            <p:layout fullPage="true" >
+
+                <p:layoutUnit id="top" position="north" size="50">
+                    <h:form>
+
+                    <p:menubar autoSubmenuDisplay="true">
+                        <p:menuitem value="Login" onclick="dlg.show();" />
+                        
+                        <p:submenu label="File" >
+                            <p:submenu label="New" >
+                                <p:menuitem value="Project" url="#" helpText="CTRL+N" />
+                                <p:menuitem value="Other" url="#" helpText="CTRL+O"/>
+                            </p:submenu>
+                            <p:menuitem value="Open" url="#" />
+                            <p:menuitem value="Quit" url="#" />
+                        </p:submenu>
+
+                        <p:submenu label="Edit">
+                            <p:menuitem value="Undo" url="#"  helpText="CTRL+Z"></p:menuitem>
+                            <p:menuitem value="Redo" url="#"  helpText="CTRL+Y"></p:menuitem>
+                        </p:submenu>
+
+                        <p:submenu label="Help">
+                            <p:menuitem value="Contents" url="#" />
+                            <p:submenu label="Search">
+                                <p:submenu label="Text">
+                                    <p:menuitem value="Workspace" url="#" />
+                                </p:submenu>
+                                <p:menuitem value="File" url="#" />
+                            </p:submenu>
+                        </p:submenu>
+                    </p:menubar>
+                        </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="bottom" position="south" size="60">
+                    <h:outputLink value="http://code.google.com/p/primefaces/source/browse/examples/trunk/showcase/src/main/webapp/ui/layoutComplex.xhtml">
+                                View Page Source (layoutComplex.xhtml)
+                    </h:outputLink>
+
+                    <br />
+
+                    <h:outputLink value="http://code.google.com/p/primefaces/source/browse/examples/trunk/showcase/src/main/java/org/primefaces/examples/view/LayoutBean.java">
+                                View Backing Bean Source (LayoutBean.java)
+                    </h:outputLink>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="left" position="west" size="300" resizable="true" closable="true" collapsible="true" header="Options" minSize="200">
+                    <p:accordionPanel activeIndex="0" autoHeight="false">
+                        <p:tab title="Menu 1">
+                            <br />
+                            <p:calendar mode="inline" navigator="none"/>
+                            <br />
+                        </p:tab>
+
+                        <p:tab title="Menu 2">
+                            <h:outputText value="Menu 2 Content" />
+                        </p:tab>
+
+                        <p:tab title="Menu 3">
+                            <h:outputText value="Menu 3 Content" />
+                        </p:tab>
+                    </p:accordionPanel>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="right" position="east" size="250" header="Gallery" resizable="true" closable="true" collapsible="true"
+                              style="text-align:center">
+                    <p:commandButton id="basic" value="Show Dialog" onclick="dlg1.show();" type="button" style="margin-top:10px"/>
+
+                </p:layoutUnit>
+
+                <p:layoutUnit id="center" position="center">
+                    <p:panel header="Google Map" footer="Hang Zhou">
+                        <p:gmap center="30.262338, 120.127461" zoom="15" type="ROADMAP"
+                            style="width:800px;height:540px" />
+                        <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
+                    </p:panel>
+                </p:layoutUnit>
+
+            </p:layout>
+
+            <p:dialog header="Basic Dialog" widgetVar="dlg1" modal="true">
+                <h:outputText value="Resistance to PrimeFaces is futile!" />
+            </p:dialog>
+                        
+            <p:growl id="growl" showDetail="true" life="3000" />
+            
+            <p:dialog id="dialog" header="Login" widgetVar="dlg">
+                <h:form>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="username" value="Username:" />
+                        <p:inputText value="#{loginBean.username}"
+                                     id="username" required="true" label="username" />
+                        
+                        <h:outputLabel for="password" value="Password:" />
+                        <h:inputSecret value="#{loginBean.password}"
+                                       id="password" required="true" label="password" />
+                        
+                        <f:facet name="footer">
+                            <p:commandButton id="loginButton" value="Login" update=":growl"
+                                             actionListener="#{loginBean.login}"
+                                             oncomplete="handleLoginRequest(xhr, status, args)"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </h:form>
+            </p:dialog>
+            
+            <script type="text/javascript">
+                function handleLoginRequest(xhr, status, args) {
+                    if(args.validationFailed || !args.loggedIn) {
+                        jQuery('#dialog').effect("shake", { times:3 }, 100);
+                    } else {
+                        dlg.hide();
+                        jQuery('#Login').fadeOut();
+                    }
+                }
+            </script>
+
+        </h:body>
+
+    </f:view>
+</html>

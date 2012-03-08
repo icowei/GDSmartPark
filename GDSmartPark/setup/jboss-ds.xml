@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+  <local-tx-datasource>
+    <jndi-name>SmartPark</jndi-name>
+    <connection-url>jdbc:oracle:thin:@localhost:1521:XE</connection-url>
+    <driver-class>oracle.jdbc.OracleDriver</driver-class>
+    <user-name>WEBADMIN</user-name>
+    <password>123456</password>
+    <min-pool-size>5</min-pool-size>
+    <max-pool-size>20</max-pool-size>
+    <idle-timeout-minutes>5</idle-timeout-minutes>
+  </local-tx-datasource>
+</datasources>

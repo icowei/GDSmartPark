@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListParkLogTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListParkLogEmpty}" rendered="#{parkLogController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{parkLogController.items.rowCount > 0}">
+                    <h:outputText value="#{parkLogController.pagination.pageFirstItem + 1}..#{parkLogController.pagination.pageLastItem + 1}/#{parkLogController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{parkLogController.previous}" value="#{bundle.Previous} #{parkLogController.pagination.pageSize}" rendered="#{parkLogController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{parkLogController.next}" value="#{bundle.Next} #{parkLogController.pagination.pageSize}" rendered="#{parkLogController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{parkLogController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_plogId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plogId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_startTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.startTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_endTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_cost}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.cost}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_parkflag}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.parkflag}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_resflag}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resflag}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_resState}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resState}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_resTime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resTime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_violation}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.violation}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_descViolation}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descViolation}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_carNo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.carNo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkLogTitle_berthId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.berthId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{parkLogController.prepareView}" value="#{bundle.ListParkLogViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{parkLogController.prepareEdit}" value="#{bundle.ListParkLogEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{parkLogController.destroy}" value="#{bundle.ListParkLogDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{parkLogController.prepareCreate}" value="#{bundle.ListParkLogCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListParkLogIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

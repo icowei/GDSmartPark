@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateParkLogTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_plogId}" for="plogId" />
+                    <h:inputText id="plogId" value="#{parkLogController.selected.plogId}" title="#{bundle.CreateParkLogTitle_plogId}" required="true" requiredMessage="#{bundle.CreateParkLogRequiredMessage_plogId}"/>
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_startTime}" for="startTime" />
+                    <h:inputText id="startTime" value="#{parkLogController.selected.startTime}" title="#{bundle.CreateParkLogTitle_startTime}" required="true" requiredMessage="#{bundle.CreateParkLogRequiredMessage_startTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_endTime}" for="endTime" />
+                    <h:inputText id="endTime" value="#{parkLogController.selected.endTime}" title="#{bundle.CreateParkLogTitle_endTime}" required="true" requiredMessage="#{bundle.CreateParkLogRequiredMessage_endTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_cost}" for="cost" />
+                    <h:inputText id="cost" value="#{parkLogController.selected.cost}" title="#{bundle.CreateParkLogTitle_cost}" required="true" requiredMessage="#{bundle.CreateParkLogRequiredMessage_cost}"/>
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_parkflag}" for="parkflag" />
+                    <h:inputText id="parkflag" value="#{parkLogController.selected.parkflag}" title="#{bundle.CreateParkLogTitle_parkflag}" required="true" requiredMessage="#{bundle.CreateParkLogRequiredMessage_parkflag}"/>
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_resflag}" for="resflag" />
+                    <h:inputText id="resflag" value="#{parkLogController.selected.resflag}" title="#{bundle.CreateParkLogTitle_resflag}" required="true" requiredMessage="#{bundle.CreateParkLogRequiredMessage_resflag}"/>
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_resState}" for="resState" />
+                    <h:inputText id="resState" value="#{parkLogController.selected.resState}" title="#{bundle.CreateParkLogTitle_resState}" />
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_resTime}" for="resTime" />
+                    <h:inputText id="resTime" value="#{parkLogController.selected.resTime}" title="#{bundle.CreateParkLogTitle_resTime}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_violation}" for="violation" />
+                    <h:inputText id="violation" value="#{parkLogController.selected.violation}" title="#{bundle.CreateParkLogTitle_violation}" required="true" requiredMessage="#{bundle.CreateParkLogRequiredMessage_violation}"/>
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_descViolation}" for="descViolation" />
+                    <h:inputText id="descViolation" value="#{parkLogController.selected.descViolation}" title="#{bundle.CreateParkLogTitle_descViolation}" />
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_carNo}" for="carNo" />
+                    <h:selectOneMenu id="carNo" value="#{parkLogController.selected.carNo}" title="#{bundle.CreateParkLogTitle_carNo}" required="true" requiredMessage="#{bundle.CreateParkLogRequiredMessage_carNo}">
+                        <f:selectItems value="#{userCarController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateParkLogLabel_berthId}" for="berthId" />
+                    <h:selectOneMenu id="berthId" value="#{parkLogController.selected.berthId}" title="#{bundle.CreateParkLogTitle_berthId}" required="true" requiredMessage="#{bundle.CreateParkLogRequiredMessage_berthId}">
+                        <f:selectItems value="#{berthController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{parkLogController.create}" value="#{bundle.CreateParkLogSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{parkLogController.prepareList}" value="#{bundle.CreateParkLogShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateParkLogIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

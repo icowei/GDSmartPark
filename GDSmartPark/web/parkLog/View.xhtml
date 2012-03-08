@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewParkLogTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewParkLogLabel_plogId}"/>
+                    <h:outputText value="#{parkLogController.selected.plogId}" title="#{bundle.ViewParkLogTitle_plogId}"/>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_startTime}"/>
+                    <h:outputText value="#{parkLogController.selected.startTime}" title="#{bundle.ViewParkLogTitle_startTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_endTime}"/>
+                    <h:outputText value="#{parkLogController.selected.endTime}" title="#{bundle.ViewParkLogTitle_endTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_cost}"/>
+                    <h:outputText value="#{parkLogController.selected.cost}" title="#{bundle.ViewParkLogTitle_cost}"/>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_parkflag}"/>
+                    <h:outputText value="#{parkLogController.selected.parkflag}" title="#{bundle.ViewParkLogTitle_parkflag}"/>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_resflag}"/>
+                    <h:outputText value="#{parkLogController.selected.resflag}" title="#{bundle.ViewParkLogTitle_resflag}"/>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_resState}"/>
+                    <h:outputText value="#{parkLogController.selected.resState}" title="#{bundle.ViewParkLogTitle_resState}"/>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_resTime}"/>
+                    <h:outputText value="#{parkLogController.selected.resTime}" title="#{bundle.ViewParkLogTitle_resTime}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_violation}"/>
+                    <h:outputText value="#{parkLogController.selected.violation}" title="#{bundle.ViewParkLogTitle_violation}"/>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_descViolation}"/>
+                    <h:outputText value="#{parkLogController.selected.descViolation}" title="#{bundle.ViewParkLogTitle_descViolation}"/>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_carNo}"/>
+                    <h:outputText value="#{parkLogController.selected.carNo}" title="#{bundle.ViewParkLogTitle_carNo}"/>
+                    <h:outputText value="#{bundle.ViewParkLogLabel_berthId}"/>
+                    <h:outputText value="#{parkLogController.selected.berthId}" title="#{bundle.ViewParkLogTitle_berthId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{parkLogController.destroyAndView}" value="#{bundle.ViewParkLogDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewParkLogEditLink}"/>
+                <br />
+                <h:commandLink action="#{parkLogController.prepareCreate}" value="#{bundle.ViewParkLogCreateLink}" />
+                <br />
+                <h:commandLink action="#{parkLogController.prepareList}" value="#{bundle.ViewParkLogShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewParkLogIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

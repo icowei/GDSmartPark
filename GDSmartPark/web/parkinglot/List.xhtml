@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListParkinglotTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListParkinglotEmpty}" rendered="#{parkinglotController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{parkinglotController.items.rowCount > 0}">
+                    <h:outputText value="#{parkinglotController.pagination.pageFirstItem + 1}..#{parkinglotController.pagination.pageLastItem + 1}/#{parkinglotController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{parkinglotController.previous}" value="#{bundle.Previous} #{parkinglotController.pagination.pageSize}" rendered="#{parkinglotController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{parkinglotController.next}" value="#{bundle.Next} #{parkinglotController.pagination.pageSize}" rendered="#{parkinglotController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{parkinglotController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkinglotTitle_plId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkinglotTitle_plAddrCity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plAddrCity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkinglotTitle_plAddrStreet}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plAddrStreet}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkinglotTitle_plAddrArea}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plAddrArea}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkinglotTitle_plAddrNo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plAddrNo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkinglotTitle_plBerthnum}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plBerthnum}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkinglotTitle_plBerthrate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plBerthrate}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkinglotTitle_plLongitude}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plLongitude}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListParkinglotTitle_plLatitude}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plLatitude}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{parkinglotController.prepareView}" value="#{bundle.ListParkinglotViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{parkinglotController.prepareEdit}" value="#{bundle.ListParkinglotEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{parkinglotController.destroy}" value="#{bundle.ListParkinglotDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{parkinglotController.prepareCreate}" value="#{bundle.ListParkinglotCreateLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ListParkinglotIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditBerthTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditBerthLabel_berthId}" for="berthId" />
+                    <h:inputText id="berthId" value="#{berthController.selected.berthId}" title="#{bundle.EditBerthTitle_berthId}" required="true" requiredMessage="#{bundle.EditBerthRequiredMessage_berthId}"/>
+                    <h:outputLabel value="#{bundle.EditBerthLabel_resFlag}" for="resFlag" />
+                    <h:inputText id="resFlag" value="#{berthController.selected.resFlag}" title="#{bundle.EditBerthTitle_resFlag}" required="true" requiredMessage="#{bundle.EditBerthRequiredMessage_resFlag}"/>
+                    <h:outputLabel value="#{bundle.EditBerthLabel_parkFlag}" for="parkFlag" />
+                    <h:inputText id="parkFlag" value="#{berthController.selected.parkFlag}" title="#{bundle.EditBerthTitle_parkFlag}" required="true" requiredMessage="#{bundle.EditBerthRequiredMessage_parkFlag}"/>
+                    <h:outputLabel value="#{bundle.EditBerthLabel_plId}" for="plId" />
+                    <h:selectOneMenu id="plId" value="#{berthController.selected.plId}" title="#{bundle.EditBerthTitle_plId}" required="true" requiredMessage="#{bundle.EditBerthRequiredMessage_plId}">
+                        <f:selectItems value="#{parkinglotController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{berthController.update}" value="#{bundle.EditBerthSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditBerthViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{berthController.prepareList}" value="#{bundle.EditBerthShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditBerthIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

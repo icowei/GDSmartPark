@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUserCarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUserCarLabel_carNo}" for="carNo" />
+                    <h:inputText id="carNo" value="#{userCarController.selected.carNo}" title="#{bundle.EditUserCarTitle_carNo}" required="true" requiredMessage="#{bundle.EditUserCarRequiredMessage_carNo}"/>
+                    <h:outputLabel value="#{bundle.EditUserCarLabel_carColor}" for="carColor" />
+                    <h:inputText id="carColor" value="#{userCarController.selected.carColor}" title="#{bundle.EditUserCarTitle_carColor}" />
+                    <h:outputLabel value="#{bundle.EditUserCarLabel_carModel}" for="carModel" />
+                    <h:inputText id="carModel" value="#{userCarController.selected.carModel}" title="#{bundle.EditUserCarTitle_carModel}" />
+                    <h:outputLabel value="#{bundle.EditUserCarLabel_carViolation}" for="carViolation" />
+                    <h:inputText id="carViolation" value="#{userCarController.selected.carViolation}" title="#{bundle.EditUserCarTitle_carViolation}" />
+                    <h:outputLabel value="#{bundle.EditUserCarLabel_userId}" for="userId" />
+                    <h:selectOneMenu id="userId" value="#{userCarController.selected.userId}" title="#{bundle.EditUserCarTitle_userId}" required="true" requiredMessage="#{bundle.EditUserCarRequiredMessage_userId}">
+                        <f:selectItems value="#{regusersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{userCarController.update}" value="#{bundle.EditUserCarSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditUserCarViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{userCarController.prepareList}" value="#{bundle.EditUserCarShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditUserCarIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

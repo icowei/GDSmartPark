@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRegusersTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRegusersLabel_userId}"/>
+                    <h:outputText value="#{regusersController.selected.userId}" title="#{bundle.ViewRegusersTitle_userId}"/>
+                    <h:outputText value="#{bundle.ViewRegusersLabel_userPhone}"/>
+                    <h:outputText value="#{regusersController.selected.userPhone}" title="#{bundle.ViewRegusersTitle_userPhone}"/>
+                    <h:outputText value="#{bundle.ViewRegusersLabel_userPwd}"/>
+                    <h:outputText value="#{regusersController.selected.userPwd}" title="#{bundle.ViewRegusersTitle_userPwd}"/>
+                    <h:outputText value="#{bundle.ViewRegusersLabel_userPermission}"/>
+                    <h:outputText value="#{regusersController.selected.userPermission}" title="#{bundle.ViewRegusersTitle_userPermission}"/>
+                    <h:outputText value="#{bundle.ViewRegusersLabel_userAccount}"/>
+                    <h:outputText value="#{regusersController.selected.userAccount}" title="#{bundle.ViewRegusersTitle_userAccount}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{regusersController.destroyAndView}" value="#{bundle.ViewRegusersDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewRegusersEditLink}"/>
+                <br />
+                <h:commandLink action="#{regusersController.prepareCreate}" value="#{bundle.ViewRegusersCreateLink}" />
+                <br />
+                <h:commandLink action="#{regusersController.prepareList}" value="#{bundle.ViewRegusersShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewRegusersIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

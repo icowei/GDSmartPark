@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRegusersTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRegusersLabel_userId}" for="userId" />
+                    <h:inputText id="userId" value="#{regusersController.selected.userId}" title="#{bundle.CreateRegusersTitle_userId}" required="true" requiredMessage="#{bundle.CreateRegusersRequiredMessage_userId}"/>
+                    <h:outputLabel value="#{bundle.CreateRegusersLabel_userPhone}" for="userPhone" />
+                    <h:inputText id="userPhone" value="#{regusersController.selected.userPhone}" title="#{bundle.CreateRegusersTitle_userPhone}" required="true" requiredMessage="#{bundle.CreateRegusersRequiredMessage_userPhone}"/>
+                    <h:outputLabel value="#{bundle.CreateRegusersLabel_userPwd}" for="userPwd" />
+                    <h:inputText id="userPwd" value="#{regusersController.selected.userPwd}" title="#{bundle.CreateRegusersTitle_userPwd}" required="true" requiredMessage="#{bundle.CreateRegusersRequiredMessage_userPwd}"/>
+                    <h:outputLabel value="#{bundle.CreateRegusersLabel_userPermission}" for="userPermission" />
+                    <h:inputText id="userPermission" value="#{regusersController.selected.userPermission}" title="#{bundle.CreateRegusersTitle_userPermission}" required="true" requiredMessage="#{bundle.CreateRegusersRequiredMessage_userPermission}"/>
+                    <h:outputLabel value="#{bundle.CreateRegusersLabel_userAccount}" for="userAccount" />
+                    <h:inputText id="userAccount" value="#{regusersController.selected.userAccount}" title="#{bundle.CreateRegusersTitle_userAccount}" required="true" requiredMessage="#{bundle.CreateRegusersRequiredMessage_userAccount}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{regusersController.create}" value="#{bundle.CreateRegusersSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{regusersController.prepareList}" value="#{bundle.CreateRegusersShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateRegusersIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
